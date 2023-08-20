@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import {withAuth0 } from '@auth0/auth0-react';
+import Api from './Api';
+import { Route,BrowserRouter as Router,Routes } from 'react-router-dom';
+import Profile from './Profile';
+import Category from './categories';
+import Header from './header';
+import SignupPage from './signup';
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<>
+<Header />
+<Router>
+            <Routes>
+              <Route exact path="/profile" Component={Profile}></Route>
+              <Route exact path="/" Component={Api}></Route>
+              <Route exact path="/allmeals" Component={Category}></Route>
+              <Route exact path="/signup" component = {SignupPage}></Route>
+            </Routes>
+    </Router>
+    
+</>
   );
 }
 
-export default App;
+export default withAuth0(App);
