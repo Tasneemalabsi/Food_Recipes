@@ -9,11 +9,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 function Api() {
+  let arr = JSON.parse(localStorage.getItem("collections"))
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [quizzes, setQuizzes] = useState([]);
   const [activeModalIndex, setActiveModalIndex] = useState(null);
   const [activeModal2Index, setActiveModal2Index] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(arr[0].collectionName);
 
   async function logQuizzes() {
     const response = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=b");
@@ -68,10 +69,10 @@ function Api() {
   function AddItem(index) {
     if(arr.length === 1){saveToLocalStorage(index, arr[0].collectionName);
     }
+
     else{
     saveToLocalStorage(index, selectedCategory);}
   }
-let arr = JSON.parse(localStorage.getItem("collections"))
   return (
     <>
       <Form inline onSubmit={handleSubmit} style={{marginTop:"5%",marginLeft:"25%", marginBottom:"5%"}}>

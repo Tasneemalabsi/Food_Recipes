@@ -53,6 +53,10 @@ const Profile = () => {
     showCollections();
   }, [isLoading]);
 
+  function handleDelete(i){
+    
+  }
+
 
   console.log(localItems)
   return (
@@ -91,8 +95,8 @@ const Profile = () => {
               <Card.Img variant="top" src={item.strMealThumb} />
               <Card.Body>
                 <Card.Title>{item.strMeal}</Card.Title>
-                <Button variant="primary" >
-                  Show Description
+                <Button variant="primary" onClick={()=>handleDelete(index)} >
+                  Delete
                 </Button>
                 
               </Card.Body>
