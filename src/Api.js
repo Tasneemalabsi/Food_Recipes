@@ -14,7 +14,11 @@ function Api() {
   const [quizzes, setQuizzes] = useState([]);
   const [activeModalIndex, setActiveModalIndex] = useState(null);
   const [activeModal2Index, setActiveModal2Index] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(arr[0].collectionName);
+  const initialCategory = arr && arr[0] ? arr[0].collectionName : "";
+
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+
+
 
   async function logQuizzes() {
     const response = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=b");
@@ -54,10 +58,6 @@ function Api() {
       localStorage.setItem("item",JSON.stringify(arr1))
       console.log("local storage items: ", arr1)
     }
-    
-
-
-
   }
 
   function handleChange(e) {
@@ -124,7 +124,7 @@ function Api() {
               <Modal.Body>
                 <h4>Centered Modal</h4>
                 <p>{quiz.strInstructions}</p>
-              </Modal.Body>
+              </Modal.Body>0
               <Modal.Footer>
                 <Button onClick={() => setActiveModalIndex(null)}>Close</Button>
               </Modal.Footer>

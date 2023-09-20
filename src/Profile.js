@@ -54,7 +54,8 @@ const Profile = () => {
   }, [isLoading]);
 
   function handleDelete(i){
-    
+    let items = JSON.P(localStorage.getItem("item"));
+
   }
 
 
